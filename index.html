@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>EUMETSAT Global Weather July 2017</title>
+    <meta name="description" content="360 video - A-Frame">
+    <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+        <video id="clouds" src="global_weather_june.mp4" autoplay loop crossorigin="anonymous"></video>
+      </a-assets>
+      <a-videosphere src="#clouds"></a-videosphere>
+  </a-scene>
+  </body>
+</html>
