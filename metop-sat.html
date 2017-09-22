@@ -24,16 +24,15 @@
         <a-asset-item id="sat-mtl" src="sats_eps_metop.mtl"></a-asset-item>
         <img id="space" src="space.jpg">
     </a-assets>
-    <a-entity camera camera-listener look-controls wasd-controls="fly:true; acceleration:400;" position="0 100 400"></a-entity>
+    <a-entity camera look-controls wasd-controls="fly:true; acceleration:500;" position="0 100 200"></a-entity>
     <a-sky src="#space">
-        <!-- Dim ambient lighting. -->
-        <a-light type="ambient" color="#222"></a-light>
+        <a-light type="ambient" color="#aaa"></a-light>
         <a-light type="point" color="#FDB813"></a-light>
-        <a-entity obj-model="obj: #sat-obj; mtl: #sat-mtl">
+        <a-entity obj-model="obj: #sat-obj; mtl: #sat-mtl" scale="0.5 0.5 0.5">
             <a-animation attribute="rotation"
                          dur="60000"
                          fill="forwards"
-                         to="360 360 360"
+                         to="360 360 0"
                          repeat="indefinite"></a-animation>
         </a-entity>
     </a-sky>
