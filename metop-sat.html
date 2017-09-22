@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EUMETSAT Global Weather July 2017</title>
+    <meta name="description" content="360 video - A-Frame">
+    <script src="//aframe.io/releases/0.7.0/aframe.min.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+//    AFRAME.registerComponent('camera-listener', {
+//        tick: function () {
+//            var cameraEl = this.el.sceneEl.camera.el;
+//            var position =  cameraEl.getAttribute('position');
+//            var rotation = cameraEl.getAttribute('rotation');
+//            console.log("camera", position, rotation)
+//            // Do something.
+//        },
+//
+//    });
+</script>
+<a-scene>
+    <a-assets>
+        <a-asset-item id="sat-obj" src="sats_eps_metop.obj"></a-asset-item>
+        <a-asset-item id="sat-mtl" src="sats_eps_metop.mtl"></a-asset-item>
+        <img id="space" src="space.jpg">
+    </a-assets>
+    <a-entity camera camera-listener look-controls wasd-controls="fly:true; acceleration:400;" position="0 100 400"></a-entity>
+    <a-sky src="#space">
+        <!-- Dim ambient lighting. -->
+        <a-light type="ambient" color="#222"></a-light>
+        <a-light type="point" color="#FDB813"></a-light>
+        <a-entity obj-model="obj: #sat-obj; mtl: #sat-mtl">
+            <a-animation attribute="rotation"
+                         dur="60000"
+                         fill="forwards"
+                         to="360 360 360"
+                         repeat="indefinite"></a-animation>
+        </a-entity>
+    </a-sky>
+</a-scene>
+</body>
+</html>
