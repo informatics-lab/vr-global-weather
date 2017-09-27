@@ -4,38 +4,53 @@
     <title>EUMETSAT Global Weather July 2017</title>
     <meta name="description" content="360 video - A-Frame">
     <script src="//aframe.io/releases/0.7.0/aframe.min.js"></script>
+    <script src="ColladaLoader2.js"></script>
 </head>
 <body>
 <script type="text/javascript">
-//    AFRAME.registerComponent('camera-listener', {
-//        tick: function () {
-//            var cameraEl = this.el.sceneEl.camera.el;
-//            var position =  cameraEl.getAttribute('position');
-//            var rotation = cameraEl.getAttribute('rotation');
-//            console.log("camera", position, rotation)
-//            // Do something.
-//        },
-//
-//    });
+    AFRAME.registerComponent('cam-listener', {
+        tick : function () {
+            var cameraEl = this.el.sceneEl.camera.el;
+            var position =  cameraEl.getAttribute('position');
+            var rotation = cameraEl.getAttribute('rotation');
+            console.log("camera", position, rotation)
+        }
+    });
 </script>
 <a-scene>
     <a-assets>
-        <a-asset-item id="sat-obj" src="sats_eps_metop.obj"></a-asset-item>
-        <a-asset-item id="sat-mtl" src="sats_eps_metop.mtl"></a-asset-item>
+        <!--<a-asset-item id="sat-obj" src="sats_eps_metop.obj"></a-asset-item>-->
+        <!--<a-asset-item id="sat-mtl" src="sats_eps_metop.mtl"></a-asset-item>-->
+        <!--<a-asset-item id="sat-collada" src="new-sat.dae"></a-asset-item>-->
+        <a-asset-item id="sat-collada" src="new-sat-tex.dae"></a-asset-item>
+        <!--<a-asset-item id="elf" src="elf.dae"></a-asset-item>-->
         <img id="space" src="space.jpg">
     </a-assets>
-    <a-entity camera look-controls wasd-controls="fly:true; acceleration:500;" position="0 100 200"></a-entity>
-    <a-sky src="#space">
+    <a-entity camera cam-listener look-controls wasd-controls="fly:true; acceleration:500;" position="9 27 -34" rotation="-23 -180 0" ></a-entity>
+    <a-sky src="#space"></a-sky>
         <a-light type="ambient" color="#aaa"></a-light>
-        <a-light type="point" color="#FDB813"></a-light>
-        <a-entity obj-model="obj: #sat-obj; mtl: #sat-mtl" scale="0.5 0.5 0.5">
-            <a-animation attribute="rotation"
-                         dur="60000"
-                         fill="forwards"
-                         to="360 360 0"
-                         repeat="indefinite"></a-animation>
+        <a-light type="point" color="#FDB813" position="100 100 5"></a-light>
+        <!--<a-entity collada2-model="#sat-collada">-->
+        <a-entity collada-model="#sat-collada" scale="0.1 0.1 0.1">
+        <!--<a-entity obj-model="obj: #sat-obj; mtl: #sat-mtl">-->
+            <!--<a-animation attribute="rotation"-->
+                         <!--dur="500"-->
+                         <!--fill="forwards"-->
+                         <!--easing="ease"-->
+                         <!--to="2 2 0"-->
+                         <!--repeat="indefinite"></a-animation>-->
+
+            <a-animation
+                    attribute="rotation"
+                    from="0 0 0"
+                    to="360 360 0"
+
+                    dur="100000"
+                    repeat="indefinite"
+                    easing="linear">
+            </a-animation>
         </a-entity>
-    </a-sky>
+
 </a-scene>
 </body>
 </html>
